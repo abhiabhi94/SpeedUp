@@ -3,18 +3,25 @@
 
   "name": "SpeedUp",
   "description": "Share easily",
-  "version": "2.1",
+  "version": "2.2",
 
   "browser_action": {
-    "default_icon": "Images/icon.ico",
+    "default_icon": "images/icon.ico",
     "default_popup": "html/popup.html"
   },
-
   "background": {
           "persistent": false,
-          "scripts": ["js/background.js"]
+          "scripts": ["js/background.js"],
+          "content_scripts": {"js": ["js/googleLogin.js", "js/gOR.js", "js/loginStatus.js"], "run_at":"document_start"}
       },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAraHi02k00m8LK/1MkXdkItzrJdxpWxH1swiKZVVFNe0SZS/A3q/3VBDgiO91G5rjGVJtqROaCHx0JVqf8Bl57oug3fCEzfkcM+O1ZvSD5xVvsFZ37lQPdoGn/lYSl0VuPkToptYXv4WGq1Mdiw9xJxDjA1b+Cm0n4uEHT/t96kMTdAR9nfMTKk6UbKQN6jqZj9qSaMLTIGHbcLJxFpUKYPbaP2YH0okCr/0oX3kURrdU85sTXSAlhM1WvPEUbRB8j76Yqq3lf87zum0Xdxmv8L1Smg3FpLcThLV2Y2mv20vMHPYH2VR1zxEvwPhYb4k0ITisBvpOC1/E1l6PYHv+twIDAQAB",
 
-  "permissions": ["<all_urls>", "contextMenus", "storage", "activeTab"]
+  "oauth2": {
+      "client_id": "1040008562015-qj8e3db40e7cqoa6ve3d5gpit88dkctq.apps.googleusercontent.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/drive"
+      ]
+    },
+  "permissions": ["<all_urls>", "contextMenus", "storage", "activeTab", "identity"]
 }
  
