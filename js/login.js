@@ -8,11 +8,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse){
       userNotLoggedIn();
     }
   }
+  return true;
 });
 
 function userNotLoggedIn(){
   $('#welcome').html('Welcome');
   $(document).ready(function(){
+    document.getElementById('tags').style['display'] = 'none';
     CSS('login', 'visible');
     CSS('signup', 'visible');
     CSS('logout', 'hidden');

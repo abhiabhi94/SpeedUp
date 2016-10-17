@@ -16,7 +16,7 @@ try{
 			if (getImage(info)){
 				if (getLink(info)){
 						// console.log("Nothing selected!");
-						return
+						return;
 				}
 			}
 		}
@@ -46,6 +46,7 @@ try{
 catch(err){
 	console.log("Error..Try again");
 };
+
 chrome.contextMenus.onClicked.addListener(storeText);
 // chrome.tabs.onUpdated.addListener(function(tabId, changedInfo, tab){
 // 	chrome.storage.local.set({text: changedInfo.url})
