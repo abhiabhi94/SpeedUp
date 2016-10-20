@@ -12,40 +12,33 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse){
 });
 
 function userNotLoggedIn(){
-  $('#welcome').html('Welcome');
+  $('#welcome').html('Welcome User');
   $(document).ready(function(){
-    document.getElementById('tags').style['display'] = 'none';
+    $('#tags').hide();
     $('#response').html('Please login to bookmark this');
-    CSS('login', 'visible');
-    CSS('signup', 'visible');
-    CSS('logout', 'hidden');
+    $('#response').css('color', 'red');
+    $('#login').show();
+    $('#signup').show();
+    $('#logout').hide();
+    $('#loginform').hide();
     $("#login").click(function(){
-      CSS('loginform', 'visible');
-      // document.getElementById('loginform').setAttribute('width', 0);
-      // document.getElementById('loginform').setAttribute('height', 0);
-      document.getElementById('loginform').contentWindow.document.getElementById('cancel').addEventListener('click',
-          function(){ 
-        CSS('loginform', 'hidden');
+      $('#loginform').show();
+      $('#loginform').contents().find('#cancel').click(function(){ 
+        $('#loginform').hide();
       });
       activateSubmitButton();
-    })
+    });
     activateSignUpButton();
-})
-}
-
-function CSS(id, value){
-  document.getElementById(id).style['visibility'] = value;
+});
 }
 
 function activateSubmitButton(){
-  document.getElementById('loginform').contentWindow.document.getElementById('submit').addEventListener('click',
-   function(){        
+  $('#loginform').contents().find('#submit').click(function(){        
     var data = new FormData();
-    data.append('email', document.getElementById('loginform').contentWindow.document.getElementById('email').value);
-    data.append('password', document.getElementById('loginform').contentWindow.document.getElementById('password').value);
+    data.append('email', $('#loginform').contents().find('#email').val());
+    data.append('password', $('#loginform').contents().find('#password').val());
     login(data);
-  })
-  
+  });
 }
 
 function login (data){
@@ -63,11 +56,9 @@ function login (data){
         document.getElementById('welcome').innerHTML = "Welcome " + resp.name;
         $('#response').html('');
         // Hide Buttons and iframe
-        CSS('loginform', 'hidden');
-        CSS('login', 'hidden');
-        CSS('signup', 'hidden');
-        // // document.getElementById('loginform').setAttribute('width', 0);
-        // // document.getElementById('loginform').setAttribute('height', 0);
+        $('#loginform').hide();
+        $('#login').hide();
+        $('#signup').hide();
         activateLogOutButton();
       }
       else{
@@ -84,19 +75,23 @@ function login (data){
 
 function userLoggedIn(data){
   $('#welcome').html('Welcome '  + data.name);
+  $('#loginform').hide();
+  $('#login').hide();
+  $('#signup').hide();
   // console.log(data.name);
   activateLogOutButton();
 }
 function activateSignUpButton(){
  var signUp = document.getElementById('signup');
- signUp.addEventListener('click', function(){
+ $('#signup').click(function(){
   chrome.tabs.create({url:"http://139.59.32.96/signup.html"})
   // console.log("Sign Me Up")
 });
 }
 
 function activateLogOutButton(){
-  CSS('logout', 'visible');
+  // CSS('logout', 'visible');
+  $('#logout').show();
   $('#logout').click(function(){
     $.ajax({
       url:'http://139.59.32.96/logout.php',

@@ -1,37 +1,35 @@
 <!doctype html>
 <html>
-	<head>
-		<body>
-			<style >
-				.textbox {
-					background-color: white;
-					border: none;
-					color: black;
-					padding: 5px 15px;
-					text-align: left;
-					text-decoration: none;
-					display: inline-block;
-					font-size: 16px;
-					margin: 4px 2px;
-					width : 300;
-				}
+	<head></head>
+	<body>
+		<style >
+			.textbox {
+				background-color: white;
+				border: none;
+				color: black;
+				padding: 5px 15px;
+				text-align: left;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				width : 300;
+			}
 
-				.error{
-					color: red;
-				}
+			.error{
+				color: red;
+			}
 
-			</style>
-			<div id = "logmein">
-				<form action = "" method="post">
-					Email <input class = "textbox" name = "email" id = "email" placeholder = "E-mail" text = "email" width = "250"></input><br>
-					Password <input class = "textbox" name = "password" id = "password" placeholder = "Password" text = "password"></input><br>
-					<button id = "submit" style = "float:left">Submit</button>
-					<button id = "cancel" style = "float:right">Cancel</button>
-					<!-- <input type="submit" style="display:none"/> -->
-				</form>
-				<br><p class="error" id="error"></p>
-			</div>
-			<!-- // <script src = "../js/googleLogin.js"></script> -->
-		</body>
-	</head>
+		</style>
+		<div id = "logmein">
+			<form>
+				Email <input class = "textbox" name = "email" id = "email" placeholder = "E-mail" text = "email" type = "email"width = "250"></input><br>
+				Password <input class = "textbox" name = "password" id = "password" placeholder = "Password" type = "password"text = "password"></input><br>
+				<button id = "submit" style = "float:left">Submit</button>
+				<button id = "cancel" style = "float:right">Cancel</button>
+				<!-- <input type="submit" style="display:none"/> -->
+			</form>
+			<br><p class="error" id="error"></p>
+		</div>
+	</body>
 </html>

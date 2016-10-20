@@ -6,7 +6,7 @@
 	    <script src="../js/loginStatus.js"></script>
 		<style>
 			.button {
-			    background-color: blue; /* Green */
+			    background-color: rgba(0, 78, 255, 0.75); /* Green */
 			    border: none;
 			    color: white;
 			    padding: 5px 15px;
@@ -16,12 +16,12 @@
 			    font-size: 16px;
 			    margin: 4px 2px;
 			    cursor: pointer;
-			    visibility: hidden;
+			    display: none
 			    float: left;
 			}
 
-			.signup {background-color: maroon; float: right;} /* Blue */
-			.logout{background-color: green; float:right; padding: 5px 7px;}
+			.signup {background-color: rgba(0, 4, 128, 0.75); float: right;} /* Blue */
+			.logout{background-color: rgba(0, 128, 10, 0.75); float:right; padding: 5px 7px;}
 		</style>
 	</head>
 	<div id = 'logOutButton' align = "right">
@@ -45,7 +45,7 @@
 			<button class = "button signup" id = "signup">SignUp</button>
 		</div>
 		<script src = "../js/login.js"></script>
-	    <iframe src="login.html" id = "loginform" width = 300 height = 150 style= "visibility:hidden" ></iframe>
+	    <iframe src="login.html" id = "loginform" width = 300 height = 150 style= "display:none" ></iframe>
 	</body>
 </html>
 
