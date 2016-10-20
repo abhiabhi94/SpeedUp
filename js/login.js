@@ -15,6 +15,7 @@ function userNotLoggedIn(){
   $('#welcome').html('Welcome');
   $(document).ready(function(){
     document.getElementById('tags').style['display'] = 'none';
+    $('#response').html('Please login to bookmark this');
     CSS('login', 'visible');
     CSS('signup', 'visible');
     CSS('logout', 'hidden');
@@ -60,6 +61,7 @@ function login (data){
       // document.getElementById('loginform').contentWindow.document.getElementById('error').innerHTML = '';
       if (resp.status == 200){
         document.getElementById('welcome').innerHTML = "Welcome " + resp.name;
+        $('#response').html('');
         // Hide Buttons and iframe
         CSS('loginform', 'hidden');
         CSS('login', 'hidden');

@@ -20,5 +20,7 @@ $.ajax({
 		    // $('#welcome').html(data.name);
 		    user = data.name;
 	    }
+	    else
+	    	$('#response').html('Please login to bookmark this');
 	}
 });
