@@ -8,6 +8,7 @@ $.ajax({
 	},
 	error: function(errorThrown) {
 	    console.log(errorThrown.statusText);
+	    document.write("Couldn't connect to the server!!!");
 	},
 	success:function(data){
 	    if (data != "")

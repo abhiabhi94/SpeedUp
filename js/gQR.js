@@ -1,29 +1,40 @@
 var count = 1;
+function execute (response) {
+	chrome.storage.local.get('text', function(data){
+        $('#text').html(data.text);
+	    if (response.choice != 'share') {
+			chrome.runtime.onMessage.addListener(function (request, sender, sendResponse){
+				if (request.greeting === 'login'){
+				    if (request.data.status === 100)
+			    		$('#response').html('Please log in to bookmark this');
+			    	else{
+			    		createHTML(data.text);
+					}
+		    	}
+		    	if (response.choice === 'save')
+		    		chrome.storage.local.remove('choice');
+			});
+	    }
+	    else{
+			console.log(data.text);
+			if (response.choice === 'share'){
+		        showQR(data.text);
+			    chrome.storage.local.remove('choice');
+			}
+	    }
+	});
+	console.log('zxjhcx');
+}
+
 if (chrome.storage){
 	chrome.storage.local.get('choice', function(response){
-    	if (typeof response.choice == 'undefined')
-    		getActiveTabUrl();
-		chrome.storage.local.get('text', function(data){
-	        $('#text').html(data.text);
-		    if (typeof response.choice == 'undefined' || response.choice == "save") {
-				chrome.runtime.onMessage.addListener(function (request, sender, sendResponse){
-					if (request.greeting === 'login'){
-					    if (request.data.status === 100)
-				    		$('#response').html('Please log in to bookmark this');
-				    	else{
-				    		createHTML(data.text);
-						}
-			    	}
-				});
-		    }
-		    else{
-				console.log(data.text);
-				if (response.choice == 'share'){
-			        showQR(data.text);
-				    chrome.storage.local.remove('choice');
-				}
-		    }
-		});
+		// var flag = 0;
+    	if (typeof response.choice == 'undefined'){
+    		// flag = 1;
+    		getActiveTabUrl(response);
+    	}
+    	else
+    		execute(response);
 	});
 };
 
@@ -82,15 +93,15 @@ function createHTML(text){
 	})
 }
 
-function getActiveTabUrl () {
+function getActiveTabUrl (response) {
 	chrome.tabs.query({active: true, currentWindow: true}, function (tab){
 		if (tab[0].url)
-			console.log('activeTab');
-			chrome.storage.local.set({text:tab[0].url})
+			console.log('activeTab', tab[0].url);
+			chrome.storage.local.set({text:tab[0].url}, function(){execute(response);console.log('fuck');});
 	});
 	chrome.tabs.onUpdated.addListener(function(tabId, changedInfo, tab){
 		console.log('Updated');
-		chrome.storage.local.set({text: changedInfo.url})
+		chrome.storage.local.set({text: changedInfo.url});
 	});
 }
 
@@ -100,7 +111,7 @@ function createTagElement ($div) {
 	var $input = $('<input>',{type:'text',
 								placeholder:'Tags to save with this link, ' + (5-count) + ' tags more',
 								id:'tag' + count,
-								style:'width:200;'});
+								style:'width:250;'});
 	$div.append($input);
 	if (count !=5)
 		createPlusButton($div, count);

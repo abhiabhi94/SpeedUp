@@ -1,11 +1,11 @@
 chrome.contextMenus.create({
-	id:"share", 
-	title:"Share", 
+	id:"save",
+	title:"Save Link",
 	contexts: ["selection", "image", "link"],
 });
 chrome.contextMenus.create({
-	id:"save",
-	title:"Save Link",
+	id:"share", 
+	title:"Share", 
 	contexts: ["selection", "image", "link"],
 });
 
