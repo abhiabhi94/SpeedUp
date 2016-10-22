@@ -1,4 +1,4 @@
-var count = 1;
+var title, count = 1;
 function execute (response) {
 	chrome.storage.local.get('text', function(data){
         $('#text').html(data.text);
@@ -40,8 +40,17 @@ if (chrome.storage){
 
 function showQR(text){
     url ='https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(text) + '&choe=UTF-8&chs=250x250';
-    if (url.length < 2048)
-	    $('#image').attr('src', url);
+    if (url.length < 2048){
+	    // $('#image').attr('src', url);
+	    $('#response').html('Generating QR...');
+	    $('#response').css('color', 'black');
+	    $img = $('<img>',{alt:'QR code', id:'qr',src:url});
+	    $('#link').append($img);
+	    $img.on('load', function(){
+	    	$('#response').html('');
+		    $('#response').css('color', 'red');
+	    });
+    }
     else 
     	document.write("Too many characters selected ! Please select less than 2048 characters.");
 }
@@ -50,6 +59,7 @@ function showQR(text){
 function addLinkToDB(link){
 	console.log('adding to DB!');
 	tag = getTags();
+	$('#response').html('Adding to DB...')
 	$.ajax({
 		url:'http://139.59.32.96/addLink.php',
 		type:'POST',
@@ -63,8 +73,11 @@ function addLinkToDB(link){
 		},
 		success:function(data){
 			console.log(data);
+		},
+		complete:function(data){
+			console.log(data);
 			$('#response').css('color', 'green');
-			$('#response').html(data);
+			$('#response').html(data.responseText);
 		}
 	});
 }
@@ -79,6 +92,8 @@ function createHTML(text){
 	var $save = $('<button>', {id:'saveButton', html:'Save'});
 	$div3.append($save);
 	$('#link').append($div1);
+	$('#tag1').val(title);
+	$('#tag1').focus().select();
 	$('#inputTags').on('click', '.plus', function(){
 		if (count < 5){
 			$('#add' +  count).toggle(false);
@@ -95,8 +110,8 @@ function createHTML(text){
 
 function getActiveTabUrl (response) {
 	chrome.tabs.query({active: true, currentWindow: true}, function (tab){
+		title = tab[0].title;
 		if (tab[0].url)
-			console.log('activeTab', tab[0].url);
 			chrome.storage.local.set({text:tab[0].url}, function(){execute(response);console.log('fuck');});
 	});
 	chrome.tabs.onUpdated.addListener(function(tabId, changedInfo, tab){
@@ -107,17 +122,18 @@ function getActiveTabUrl (response) {
 
 
 function createTagElement ($div) {
-	console.log('teds');
+	// console.log('teds');
 	var $input = $('<input>',{type:'text',
 								placeholder:'Tags to save with this link, ' + (5-count) + ' tags more',
 								id:'tag' + count,
 								style:'width:250;'});
 	$div.append($input);
+	$input.focus();
 	if (count !=5)
 		createPlusButton($div, count);
 }
 function createPlusButton ($div) {
-	console.log('gjh');
+	// console.log('gjh');
 	var $plus = $('<img>', {id:'add' + count,
 							alt:'Add another tag',
 							class:'plus',
