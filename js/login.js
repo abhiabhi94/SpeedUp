@@ -23,6 +23,7 @@ function userNotLoggedIn(){
     $('#loginform').hide();
     $("#login").click(function(){
       $('#loginform').show();
+      $('#email').focus();
       $('#loginform').contents().find('#cancel').click(function(){ 
         $('#loginform').hide();
       });
@@ -42,6 +43,7 @@ function activateSubmitButton(){
 }
 
 function login (data){
+  $('#error').html('Logging in!!!');
   var xhr = new XMLHttpRequest();
   method = 'POST';
   url = 'http://139.59.32.96/login.php';
@@ -93,6 +95,8 @@ function activateLogOutButton(){
   // CSS('logout', 'visible');
   $('#logout').show();
   $('#logout').click(function(){
+    $('#welcome').html('Logging out');
+    $('#welcome').css('color', 'red');
     $.ajax({
       url:'http://139.59.32.96/logout.php',
       type:'GET',
@@ -109,6 +113,10 @@ function activateLogOutButton(){
           // console.log('Logged out!!!');
           userNotLoggedIn();
         }
+      },
+      complete:function(){
+        $('#response').html('Logged out successfully.');
+        $('#welcome').css('color', 'black');
       }
     })
   })

@@ -1,4 +1,6 @@
 user = "";
+$('#response').html('Logging in...');
+console.log('efdfkdsfjf');
 $.ajax({
 	url: 'http://139.59.32.96/loginStatus.php',
 	type: 'GET',
@@ -23,5 +25,10 @@ $.ajax({
 	    }
 	    else
 	    	$('#response').html('Please login to bookmark this');
+	},
+	complete:function(){
+		$('#response').html('');
+		$('#response').css('color', 'black');
+
 	}
 });
