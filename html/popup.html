@@ -4,7 +4,8 @@
 	    <title>SpeedUp</title>
 	    <script src= "../js/jquery-3.1.0.min.js"></script>
 	    <script src="../js/loginStatus.js"></script>
-		<style>
+	   <link rel="stylesheet" type="text/css" href="../css/popup.css">
+<!-- /*		<style>
 			.button {
 			    background-color: rgba(0, 78, 255, 0.75);
 			    border: none;
@@ -22,7 +23,9 @@
 
 			.signup {background-color: rgba(0, 4, 128, 0.75); float: right;}
 			.logout{background-color: rgba(0, 128, 10, 0.75); float:right; padding: 5px 7px;}
-		</style>
+			.para{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+		</style>*/ -->
+		<!-- <../css/popup.css> -->
 	</head>
 	<div id = 'logOutButton' align = "right">
 		<button class = "button logout" id = "logout">Logout</button>
@@ -34,11 +37,8 @@
 		</div>
 		<script src = "../js/login.js"></script>
 		<div  id = "link" style="width: 300px; margin: 0 auto;">
-		    <!-- <div style="float: left; width: 100%;"></div> -->
-		    <!-- <div style="float: right; width: 20%;"></div> -->
-
 			<script src = "../js/gQR.js"></script>
-			<p id="text">Select a page or text to share</p>
+			<p id="text" class = 'para'>Select a page or text to share</p>
 		</div>
 		<div id = "buttons" style="margin:auto;">
 			<button class = "button" id = "login">Login</button>
