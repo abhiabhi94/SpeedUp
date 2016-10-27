@@ -3,6 +3,8 @@ function execute (response) {
 	chrome.storage.local.get('text', function(data){
         $('#text').html(data.text);
 	    if (response.choice != 'share') {
+	    	$('#gqr').show();
+	    	$('#gqr').click(function(){showQR(data.text);});
 			chrome.runtime.onMessage.addListener(function (request, sender, sendResponse){
 				if (request.greeting === 'login'){
 				    if (request.data.status === 100)
@@ -40,6 +42,7 @@ if (chrome.storage){
 
 function showQR(text){
     url ='https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(text) + '&choe=UTF-8&chs=250x250';
+    $('#gqr').hide();
     if (url.length < 2048){
 	    // $('#image').attr('src', url);
 	    $('#response').html('Generating QR...');
@@ -135,6 +138,7 @@ function createTagElement ($div) {
 function createPlusButton ($div) {
 	// console.log('gjh');
 	var $plus = $('<img>', {id:'add' + count,
+							title:'Add another tag',
 							alt:'Add another tag',
 							class:'plus',
 							src:'../images/plus.gif',

@@ -16,3 +16,5 @@
 .signup {background-color: rgba(0, 4, 128, 0.75); float: right;}
 .logout{background-color: rgba(0, 128, 10, 0.75); float:right; padding: 5px 7px;}
 .para{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.resp{color:red;}
+.link{width: 300px; margin: 0 auto;}
