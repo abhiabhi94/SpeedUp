@@ -1,6 +1,6 @@
 .button {
     background-color: rgba(0, 78, 255, 0.75);
-    border: none;
+    border: 2px solid;
     color: white;
     padding: 5px 15px;
     text-align: center;
@@ -11,6 +11,7 @@
     cursor: pointer;
     display: none;
     float: left;
+    border-radius: 15px;
 }
 
 .signup {background-color: rgba(0, 4, 128, 0.75); float: right;}
