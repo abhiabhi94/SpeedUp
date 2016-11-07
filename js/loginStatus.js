@@ -1,6 +1,5 @@
 user = "";
 $('#response').html('Logging in...');
-console.log('efdfkdsfjf');
 $.ajax({
 	url: 'http://139.59.32.96/loginStatus.php',
 	type: 'GET',

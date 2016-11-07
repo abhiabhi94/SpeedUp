@@ -95,6 +95,7 @@ function activateLogOutButton(){
   // CSS('logout', 'visible');
   $('#logout').show();
   $('#logout').click(function(){
+    $('#save').hide();
     $('#welcome').html('Logging out');
     $('#welcome').css('color', 'red');
     $.ajax({

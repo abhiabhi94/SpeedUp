@@ -90,10 +90,10 @@ function createHTML(text){
 	var $div2 = $('<div>', {id:'inputTags', class:'tags'});
 	$div1.append($div2);
 	createTagElement($div2, count);
-	var $div3 = $('<div>', {id:'save'});
-	$div1.append($div3);
-	var $save = $('<button>', {id:'saveButton', html:'Save'});
-	$div3.append($save);
+	// var $div3 = $('<div>', {id:'save'});
+	// $div1.append($div3);
+	var $save = $('<button>', {id:'save', class:'button save', html:'Save'});
+	$('#gQR').before($save);
 	$('#link').append($div1);
 	$('#tag1').val(title);
 	$('#tag1').focus().select();
@@ -105,7 +105,7 @@ function createHTML(text){
 			console.log(count);
 		}
 	})
-	$('#saveButton').click(function(){
+	$('#save').click(function(){
 		// console.log('hdsm');
 		addLinkToDB(text);
 	})
