@@ -2,10 +2,9 @@
     background-color: rgba(0, 78, 255, 0.75);
     border: 2px solid;
     color: white;
-    padding: 5px 15px;
+    padding: 4px 10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
@@ -13,9 +12,29 @@
     float: left;
     border-radius: 15px;
 }
+.textbox {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 5px 15px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    width : 300;
+}
 
-.signup {background-color: rgba(0, 4, 128, 0.75); float: right;}
+.error{
+    color: red;
+}
+
+.signup {background-color: rgba(26, 35, 126, 0.75); float: right;}
 .logout{background-color: rgba(0, 128, 10, 0.75); float:right; padding: 5px 7px;}
 .para{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .resp{color:red;}
 .link{width: 300px; margin: 0 auto;}
+.submit{background-color: #673AB7; display: inline-block;}
+.cancel{background-color: rgba(0, 0, 0, 0.75); float: right; display: inline-block;}
+.save{display: inline-block;background: #403469;}
+.gqr{display: inline-block;background: transparent;color: #4d4d4d;float: right;}
